@@ -15,7 +15,7 @@ import pl.softmil.test.integration.utils.validation.ConstraintViolationHelper;
 import pl.softmil.test.integration.utils.validation.ErrorMatcher.ViolationContextContainer;
 import pl.softmil.validator.condition.MyEnum;
 
-@ContextConfiguration("/validators.xml")
+@ContextConfiguration("/validators-context.xml")
 @RunWith(SpringJUnit4ClassRunner.class)
 public class FieldNotNullIfValidatorTest {
     @Autowired

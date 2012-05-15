@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import pl.softmil.test.integration.utils.validation.ConstraintViolationHelper;
 import pl.softmil.test.integration.utils.validation.ErrorMatcher.ViolationContextContainer;
 
-@ContextConfiguration("/validators.xml")
+@ContextConfiguration("/validators-context.xml")
 @RunWith(SpringJUnit4ClassRunner.class)
 public class ElValidatorTest {
     @Autowired
