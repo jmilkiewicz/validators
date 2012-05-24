@@ -6,3 +6,4 @@ target
 parent/web/src/main/webapp/WEB-INF/lib
 parent/web/src/main/webapp/META-INF/maven/*
 parent/web/src/main/webapp/WEB-INF/classes/*
+/.surefire-EBCE8765A18F2FF4AF8F4AE6106E3BE02F36C57F
