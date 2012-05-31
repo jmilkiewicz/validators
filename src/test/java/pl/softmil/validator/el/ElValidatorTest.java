@@ -1,5 +1,7 @@
 package pl.softmil.validator.el;
 
+import static org.hamcrest.Matchers.equalTo;
+
 import java.util.Set;
 
 import javax.validation.ConstraintViolation;
@@ -28,7 +30,7 @@ public class ElValidatorTest {
         ConstraintViolationHelper constraintViolationHelper = validate(propertyPropertyRepeatBean);
 
         constraintViolationHelper.assertAnyViolationsRaised();
-        constraintViolationHelper.assertGivenNumberViolationsRaised(2);
+        constraintViolationHelper.assertGivenNumberViolationsRaised(equalTo(2));
         constraintViolationHelper
                 .assertSpecificViolationRaised(new ViolationContextContainer(
                         "prop", propertyPropertyRepeatBean,
