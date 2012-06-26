@@ -19,7 +19,7 @@ public class SumUpToValidator implements
     @Override
     public boolean isValid(Collection<? extends AsBigDecimal> value,
             ConstraintValidatorContext context) {
-        BigDecimal sum = new BigDecimal(0);
+        BigDecimal sum = BigDecimal.ZERO;
         for (AsBigDecimal asBigDecimal : value) {
             sum = sum.add(asBigDecimal.asBigDecimal());
         }
