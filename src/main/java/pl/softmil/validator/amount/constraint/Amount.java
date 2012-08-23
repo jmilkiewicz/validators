@@ -33,4 +33,7 @@ public @interface Amount {
 
     @OverridesAttribute.List({ @OverridesAttribute(constraint = Digits.class, name = "integer") })
     int integer() default 8;
+    
+    @OverridesAttribute.List({ @OverridesAttribute(constraint = DecimalMin.class, name = "value") })
+    String min() default "0";
 }
