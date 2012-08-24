@@ -1,17 +1,15 @@
 package pl.softmil.validator.el.constraint;
 
-import java.lang.annotation.Documented;
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import static java.lang.annotation.ElementType.*;
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
-import javax.validation.Constraint;
-import javax.validation.Payload;
+import java.lang.annotation.*;
+
+import javax.validation.*;
 
 import pl.softmil.validator.el.impl.SpelAssertValidator;
 
-@Target(ElementType.TYPE)
+@Target({ TYPE, ANNOTATION_TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = SpelAssertValidator.class)
 @Documented
@@ -25,4 +23,11 @@ public @interface SpelAssert {
     Class<? extends Payload>[] payload() default {};
 
     String value();
+
+    @Target({ ANNOTATION_TYPE, TYPE })
+    @Retention(RUNTIME)
+    @Documented
+    @interface List {
+        SpelAssert[] value();
+    }
 }
