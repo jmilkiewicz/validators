@@ -1,5 +1,8 @@
 package pl.softmil.validator.sumUpTo;
 
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
+
 import java.math.BigDecimal;
 
 import javax.validation.Validator;
@@ -7,6 +10,10 @@ import javax.validation.Validator;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.expression.Expression;
+import org.springframework.expression.spel.SpelParserConfiguration;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -41,6 +48,38 @@ public class SumUpToTest {
         validationHelper.assertNoViolationsRaised();
     }
     
+    @Test
+    public void co(){
+     // Create a configuration:  auto-grow null fields and empty collections.
+        SpelParserConfiguration configuration = new SpelParserConfiguration(true, true);
+
+        // Create a parser.
+        SpelExpressionParser parser = new SpelExpressionParser(configuration);
+
+        
+        
+        
+        
+        // Parse an expression.
+        Expression expression = parser.parseExpression(" a < (b == null? new Integer(100) : b)");
+
+        // Create an evaluation context.
+        StandardEvaluationContext context = new StandardEvaluationContext();
+
+        // Expose variables to the script.
+        AB rootObject = new AB();
+        context.setRootObject(rootObject);
+        //context.setVariable("b", "6");
+
+        // Evaluate the expression.
+        Boolean value = expression.getValue(context, Boolean.class);
+        
+        assertThat(value, is(true));
+
+        
+
+        
+    }
     
     private void addToContainer(AsBigDecimal asBigDecimal) {
         sut.getElems().add(asBigDecimal);
