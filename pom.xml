@@ -101,6 +101,13 @@
 		</dependency>
 	</dependencies>
 	<build>
+	<extensions>
+			<extension>
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-webdav</artifactId>
+				<version>${version.extension.wagon-webdav}</version>
+			</extension>
+		</extensions>
 		<pluginManagement>
 			<plugins>
 				<plugin>
