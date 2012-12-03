@@ -4,6 +4,16 @@
 	<groupId>pl.softmil</groupId>
 	<artifactId>validators</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<description>custom JSR-303 validators</description>
+	<issueManagement>
+		<system>github</system>
+		<url>https://github.com/jmilkiewicz/validators/issues</url>
+	</issueManagement>
+	<scm>
+		<url>https://github.com/jmilkiewicz/validators</url>
+		<connection>scm:git:ssh://git@github.com/jmilkiewicz/validators.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com/jmilkiewicz/validators.git</developerConnection>
+	</scm>
 	<properties>
 		<targetJdk>1.6</targetJdk>
 		<org.springframework-version>3.1.1.RELEASE</org.springframework-version>
@@ -11,66 +21,13 @@
 		<hibernatevalidator.version>4.2.0.Final</hibernatevalidator.version>
 		<org.slf4j-version>1.6.4</org.slf4j-version>
 		<logback-version>1.0.1</logback-version>
-	</properties>
-	<build>
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-compiler-plugin</artifactId>
-					<configuration>
-						<source>${targetJdk}</source>
-						<target>${targetJdk}</target>
-					</configuration>
-				</plugin>
-				<plugin>
-					<groupId>org.codehaus.mojo</groupId>
-					<artifactId>findbugs-maven-plugin</artifactId>
-					<version>2.4.0</version>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-pmd-plugin</artifactId>
-					<version>2.6</version>
-				</plugin>
-				<plugin>
-                                         <groupId>org.codehaus.mojo</groupId>
-                                        <artifactId>cobertura-maven-plugin</artifactId>
-                                        <version>2.5.2</version>
-                                </plugin>
-			</plugins>
-		</pluginManagement>
-		<plugins>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>findbugs-maven-plugin</artifactId>
-				<configuration>
-					<findbugsXmlOutput>true</findbugsXmlOutput>
-					<findbugsXmlWithMessages>true</findbugsXmlWithMessages>
-					<xmlOutput>true</xmlOutput>
-					<sourceEncoding>UTF-8</sourceEncoding>
-				</configuration>
-			</plugin>
-			<plugin>
-                                <groupId>org.codehaus.mojo</groupId>
-                                <artifactId>cobertura-maven-plugin</artifactId>
-                                <configuration>
-                                    <formats>
-                                        <format>xml</format>
-                                    </formats>
-                                </configuration>
-                        </plugin>
 
-			<plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.12</version>
-                <configuration>
-                    <runOrder>failedFirst</runOrder>
-                </configuration>
-            </plugin>
-		</plugins>
-	</build>
+		<version.extension.wagon-webdav>1.0-beta-2</version.extension.wagon-webdav>
+		<version.plugin.maven-resources-plugin>2.4.3</version.plugin.maven-resources-plugin>
+		<version.plugin.maven-source-plugin>2.1.2</version.plugin.maven-source-plugin>
+		<version.plugin.maven-javadoc-plugin>2.7</version.plugin.maven-javadoc-plugin>
+		<version.plugin.maven-release-plugin>2.2.2</version.plugin.maven-release-plugin>
+	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>org.hibernate</groupId>
@@ -80,7 +37,7 @@
 		<dependency>
 			<groupId>pl.softmil.test</groupId>
 			<artifactId>test-integration-utils</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>0.0.1</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -105,7 +62,6 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-beans</artifactId>
@@ -127,7 +83,7 @@
 			<artifactId>slf4j-api</artifactId>
 			<version>${org.slf4j-version}</version>
 		</dependency>
-			<dependency>
+		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<version>0.11.0</version>
@@ -144,6 +100,107 @@
 			<version>${logback-version}</version>
 		</dependency>
 	</dependencies>
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<configuration>
+						<source>${targetJdk}</source>
+						<target>${targetJdk}</target>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>findbugs-maven-plugin</artifactId>
+					<version>2.4.0</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-pmd-plugin</artifactId>
+					<version>2.6</version>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>cobertura-maven-plugin</artifactId>
+					<version>2.5.2</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-source-plugin</artifactId>
+					<version>${version.plugin.maven-source-plugin}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-release-plugin</artifactId>
+					<version>${version.plugin.maven-release-plugin}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<version>${version.plugin.maven-javadoc-plugin}</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>findbugs-maven-plugin</artifactId>
+				<configuration>
+					<findbugsXmlOutput>true</findbugsXmlOutput>
+					<findbugsXmlWithMessages>true</findbugsXmlWithMessages>
+					<xmlOutput>true</xmlOutput>
+					<sourceEncoding>${project.build.sourceEncoding}</sourceEncoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>cobertura-maven-plugin</artifactId>
+				<configuration>
+					<formats>
+						<format>xml</format>
+					</formats>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<configuration>
+					<encoding>${source.encoding}</encoding>
+				</configuration>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+	<distributionManagement>
+		<downloadUrl>https://github.com/jmilkiewicz/validators</downloadUrl>
+		<repository>
+			<id>softmil-cloudbees-release</id>
+			<name>softmil-cloudbees-release</name>
+			<url>dav:https://repository-softmil.forge.cloudbees.com/release/</url>
+		</repository>
+		<snapshotRepository>
+			<id>softmil-cloudbees-snapshot</id>
+			<name>softmil-cloudbees-snapshot</name>
+			<url>dav:https://repository-softmil.forge.cloudbees.com/snapshot/</url>
+		</snapshotRepository>
+	</distributionManagement>
 	<reporting>
 		<plugins>
 			<plugin>
@@ -153,4 +210,14 @@
 			</plugin>
 		</plugins>
 	</reporting>
+	<repositories>
+		<repository>
+			<id>softmil-cloudbess-release</id>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<name>softmil-cloudbess-release repository</name>
+			<url>http://repository-softmil.forge.cloudbees.com/release/</url>
+		</repository>
+	</repositories>
 </project>
